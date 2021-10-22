@@ -3,20 +3,10 @@
 echo Generating...
 
 opp_neddoc --no-automatic-hyperlinks -x \
-/inet/src/inet/clock,\
 /inet/src/inet/linklayer/configurator,\
 /inet/src/inet/linklayer/ethernet,\
-/inet/src/inet/linklayer/ieee8021as,\
-/inet/src/inet/linklayer/ieee8021r,\
 /inet/src/inet/linklayer/vlan,\
 /inet/src/inet/physicallayer,\
-/inet/examples/ethernet/clocksynchronization,\
-/inet/examples/ethernet/creditbasedshaper,\
-/inet/examples/ethernet/cutthrough,\
-/inet/examples/ethernet/gatepreemption,\
-/inet/examples/ethernet/preemption,\
-/inet/examples/ethernet/redundancy,\
-/inet/examples/ethernet/timeawareshaper,\
 MARKER,\
 /inet/src/inet/applications,\
 /inet/src/inet/common,\
@@ -45,7 +35,23 @@ MARKER,\
 /inet/src/inet/mobility,\
 /inet/src/inet/networklayer,\
 /inet/src/inet/networks,\
-/inet/src/inet/node,\
+/inet/src/inet/node/aodv,\
+/inet/src/inet/node/bgp,\
+/inet/src/inet/node/dsdv,\
+/inet/src/inet/node/dymo,\
+/inet/src/inet/node/eigrp,\
+/inet/src/inet/node/gpsr,\
+/inet/src/inet/node/httptools,\
+/inet/src/inet/node/internetcloud,\
+/inet/src/inet/node/ipv6,\
+/inet/src/inet/node/mpls,\
+/inet/src/inet/node/ospfv2,\
+/inet/src/inet/node/ospfv3,\
+/inet/src/inet/node/packetdrill,\
+/inet/src/inet/node/rip,\
+/inet/src/inet/node/rtp,\
+/inet/src/inet/node/wireless,\
+/inet/src/inet/node/xmipv6,\
 /inet/src/inet/physicallayer/common,\
 /inet/src/inet/physicallayer/wired/common,\
 /inet/src/inet/physicallayer/wireless,\
@@ -66,62 +72,15 @@ MARKER,\
 /inet/src/inet/protocolelement/socket,\
 /inet/src/inet/protocolelement/trafficconditioner,\
 /inet/src/inet/protocolelement/transceiver,\
-/inet/src/inet/queueing/base,\
 /inet/src/inet/queueing/compat,\
 /inet/src/inet/queueing/flow,\
 /inet/src/inet/queueing/function,\
 /inet/src/inet/queueing/marker,\
-/inet/src/inet/queueing/server,\
-/inet/src/inet/queueing/sink,\
-/inet/src/inet/queueing/source,\
 /inet/src/inet/routing,\
 /inet/src/inet/transportlayer,\
 /inet/src/inet/visualizer,\
-/inet/examples/adhoc,\
-/inet/examples/aodv,\
-/inet/examples/bgpv4,\
-/inet/examples/clock,\
-/inet/examples/communicationcache,\
-/inet/examples/dhcp,\
-/inet/examples/diffserv,\
-/inet/examples/eigrp,\
-/inet/examples/emulation,\
-/inet/examples/ethernet/arptest,\
-/inet/examples/ethernet/arptest2,\
-/inet/examples/ethernet/gatepreemption,\
-/inet/examples/ethernet/interface,\
-/inet/examples/ethernet/invehicle,\
-/inet/examples/ethernet/lans,\
-/inet/examples/ethernet/vlan,\
-/inet/examples/geometry,\
-/inet/examples/httptools,\
-/inet/examples/ieee8021as,\
-/inet/examples/ieee8021d,\
-/inet/examples/inet,\
-/inet/examples/internetcloud,\
-/inet/examples/ipv6,\
-/inet/examples/manetrouting,\
-/inet/examples/mobileipv6,\
-/inet/examples/mobility,\
-/inet/examples/mpls,\
-/inet/examples/neighborcache,\
-/inet/examples/objectcache,\
-/inet/examples/openstreetmap,\
-/inet/examples/ospfv2,\
-/inet/examples/ospfv3,\
-/inet/examples/pim,\
-/inet/examples/rip,\
-/inet/examples/rtp,\
-/inet/examples/sctp,\
-/inet/examples/timing,\
-/inet/examples/voip,\
-/inet/examples/voipstream,\
-/inet/examples/wireless,\
+/inet/examples,\
 /inet/showcases,\
 /inet/tutorials .
-
-echo Uploading...
-
-cd doc/neddoc && rsync -r -e 'ssh -p 2200' . --delete --progress com@server.omnest.com:~/httpdocs/tmp/tsn
 
 echo Done.
