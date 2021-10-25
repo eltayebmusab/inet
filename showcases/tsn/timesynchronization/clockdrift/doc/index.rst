@@ -330,6 +330,30 @@ Note that the drfit rate (and time dilation) can increase so much that the send 
 
 **TODO** nope. because the window is in switch1. this is the same as the blue line but steeper.
 
+--------
+
+In the case of ConstantClockDrift, the end-to-end delay behaves unexpectedly/weirdly. In the case of packets going to sink2 (orange curve), it changes decreases linearly, keeps at a minimum value, then resets to a high value and starts decreasing again. In the case of sink1, it keeps increasing indefinatelly. This is due to the magnitude and direction of the clock drift, i.e. how fast the difference between the times of a pair of clocks increases, and which of the clocks is faster than the other. The clock of source1 is faster than that of switch1, but the clock of source2 is slower (so they diverge in the opposite direction? that is, one of them is late the other is early and this lateness/earliness keeps increasing).
+
+So what is the reason behind these graphs? A helpful way to think about the effect of clock drift is time dilation. When there is clock drift, from the point of view of switch1, source1's time if "faster", source2's time is "slower". If there is no clock drift, the clocks keep the same time, and the sources generate packets in sync with the opening of the gates in switch1's MAC layer. Each packet is sent in it's "own" send window, i.e. the period when the corresponding gate is open, so the delay is constant.
+
+.. note:: The period of the gates is 20us, the send window corresponding to one gate is 10us. The traffic generation period of the switches is 20us, with switch2 offsetted to correspond to the opening of the corresponding gate. The transmission time of the 800B packet is 6.4us, so only one packet can "fit" in a send window (the TODO calculates if the packet can fit in the window, and doesn't send it if it can't).
+
+However, when there is clock drift, the traffic generation periods and gate openings no longer match. From the point of view of switch1, traffic is generated faster than 20us in source1. Similarly, it is generated slower than 20us in source2 (more thin or more dense packet streams).
+
+The clock drift causes the send windows in switch1 to drift as well. For example, from the point of view of source1, the gate in switch1 opens a bit earlier as time passes, so packets need to wait increasingly less. At a point, the window actually opens before the packet arrives, so it doesn't have to wait in the queue at all. Then the packets start arriving just after the window closes, so they can only be sent in the next window. However, the "next window" keeps opening earlier and earlier, and so on.
+
+In the case of source2, the window drifts in the other direction. The window opens later and later in each cycle, so packets have to wait longer and longer (hence the increasing curve). However, packets are generated faster than the windows. So in any amount of time, there are more packets than send windows. Thus, eventually, packets accumate in the queue, and the end-to-end delay increases indefinatelly.
+
+Packets arrive late, and this lateness keeps increasing. So much that at one point, a packet is "late" with a complete period, 20us. So effectively when it arrives, the previous packet is still in the queue.
+
+**TODO** which one? of the last two paragraphs
+
+.. Note that the drfit rate (and time dilation) can increase so much that the send window falls below 6.4us from the point of view of source1. In this case,
+
+   **TODO** nope. because the window is in switch1. this is the same as the blue line but steeper.
+
+--------
+
 
 Sources: :download:`omnetpp.ini <../omnetpp.ini>`, :download:`ClockDriftShowcase.ned <../ClockDriftShowcase.ned>`
 
