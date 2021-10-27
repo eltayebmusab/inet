@@ -30,10 +30,10 @@ import inet.node.ethernet.EthernetSwitch;
 module TsnSwitch extends EthernetSwitch
 {
     parameters:
-        bool hasTimeSynchronization = default(true); // enable 802.1 AS time synchronization
-        bool hasIngressTrafficFiltering = default(true); // enable 802.1 Qci ingress traffic filtering
-        bool hasEgressTrafficShaping = default(true); // enable 802.1 egress traffic shaping (credit based shaping, time aware shaping, asynchronous shaping) 
-        bool hasStreamRedundancy = default(true); // enable 802.1 CB stream redundancy
+        bool hasTimeSynchronization = default(false); // enable 802.1 AS time synchronization
+        bool hasIngressTrafficFiltering = default(false); // enable 802.1 Qci ingress traffic filtering
+        bool hasEgressTrafficShaping = default(false); // enable 802.1 egress traffic shaping (credit based shaping, time aware shaping, asynchronous shaping) 
+        bool hasStreamRedundancy = default(false); // enable 802.1 CB stream redundancy
         bool hasFramePreemption = default(false); // enable 802.1 Qbu frame preemption
         hasGptp = default(hasTimeSynchronization); // enable gPTP protocol
         gptp.gptpNodeType = default("BRIDGE_NODE"); // configure gPTP bridge node type
@@ -42,7 +42,7 @@ module TsnSwitch extends EthernetSwitch
         ethernet.typename = default("EthernetLayer"); // use Ethernet protocol layer outside of network interfaces
         eth[*].typename = default(hasCutthroughSwitching ? "EthernetCutthroughInterface" : "LayeredEthernetInterface"); // switch to modular Ethernet interface
         eth[0].macLayer.typename = default(hasFramePreemption ? "EthernetPreemptingMacLayer" : "EthernetMacLayer");
-        eth[*].macLayer.queue.typename = default(hasEgressTrafficShaping ? "GatingPriorityQueue" : "PacketQueue"); // use compound priority queue having multiple subqueues controlled by separate gates when egress traffic shaping is enabled
+        eth[*].macLayer.queue.typename = default(hasEgressTrafficShaping ? "Ieee8021qTimeAwareShaper" : "PacketQueue"); // use compound priority queue having multiple subqueues controlled by separate gates when egress traffic shaping is enabled
         eth[*].phyLayer.typename = default(hasCutthroughSwitching ? "EthernetStreamThroughPhyLayer" : (hasFramePreemption ? "EthernetPreemptingPhyLayer" : "EthernetPhyLayer")); // use packet streaming when cut-through switching is enabled
         bridging.typename = default("BridgingLayer"); // switch to modular bridging
         bridging.streamIdentifier.typename = default(hasStreamRedundancy ? "StreamIdentifierLayer" : ""); // enable stream identification when stream redundancy is enabled

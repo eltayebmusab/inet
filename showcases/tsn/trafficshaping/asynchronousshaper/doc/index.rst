@@ -30,21 +30,25 @@ Here is the configuration:
 Results
 -------
 
-.. The following video shows the behavior in Qtenv:
-
-   .. video:: media/behavior.mp4
-      :align: center
-      :width: 90%
-
 Here are the simulation results:
 
-.. figure:: media/receivedpackets.png
+.. figure:: media/SourceApplicationTraffic.png
    :align: center
 
-.. figure:: media/gatestate.svg
+.. figure:: media/SwitchInboundTraffic.png
    :align: center
-   :width: 100%
 
+.. figure:: media/SwitchOutboundTraffic.png
+   :align: center
+
+.. figure:: media/SwitchQueueLengths.png
+   :align: center
+
+.. figure:: media/TrafficClasses.png
+   :align: center
+
+.. figure:: media/DestinationApplicationTraffic.png
+   :align: center
 
 Sources: :download:`omnetpp.ini <../omnetpp.ini>`, :download:`AsynchronousShaperShowcase.ned <../AsynchronousShaperShowcase.ned>`
 

@@ -63,6 +63,11 @@ void StreamSplitter::pushPacket(Packet *packet, cGate *gate)
                 duplicate->addTagIfAbsent<StreamReq>()->setStreamName(splitStreamName);
                 pushOrSendPacket(duplicate, outputGate, consumer);
             }
+            if (auto dispatchProtocolReq = packet->findTag<DispatchProtocolReq>()) {
+                auto encapsulationReq = packet->addTagIfAbsent<EncapsulationProtocolReq>();
+                encapsulationReq->insertProtocols(0, dispatchProtocolReq->getProtocol());
+            }
+            packet->addTagIfAbsent<DispatchProtocolReq>()->setProtocol(&Protocol::ieee8021rTag);
             handlePacketProcessed(packet);
             delete packet;
         }

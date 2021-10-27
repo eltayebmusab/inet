@@ -1,5 +1,5 @@
 #!/bin/sh
 
 echo Uploading...
-cd doc/src/_build/html && rsync -r -e 'ssh -p 2200' . --delete --progress com@server.omnest.com:~/httpdocs/tmp/tsn
+cd doc/src/_build/html && rsync -L -r -e 'ssh -p 2200' . --delete --progress com@server.omnest.com:~/httpdocs/tmp/tsn
 echo Done.

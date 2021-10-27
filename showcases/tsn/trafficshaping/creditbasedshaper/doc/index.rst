@@ -31,25 +31,26 @@ Results
 
 Here are the results:
 
-.. figure:: media/receivedpackets.png
+.. figure:: media/SourceApplicationTraffic.png
    :align: center
 
-.. figure:: media/transmission2.svg
+.. figure:: media/SwitchInboundTraffic.png
    :align: center
-   :width: 100%
 
-.. The following video shows the behavior in Qtenv:
+.. figure:: media/SwitchOutboundTraffic.png
+   :align: center
 
-   .. video:: media/behavior.mp4
-      :align: center
-      :width: 90%
+.. figure:: media/SwitchQueueLengths.png
+   :align: center
 
-   Here are the simulation results:
+.. figure:: media/TrafficClass0.png
+   :align: center
 
-   .. .. image:: media/results.png
-      :align: center
-      :width: 100%
+.. figure:: media/TrafficClass1.png
+   :align: center
 
+.. figure:: media/DestinationApplicationTraffic.png
+   :align: center
 
 Sources: :download:`omnetpp.ini <../omnetpp.ini>`, :download:`CreditBasedShaperShowcase.ned <../CreditBasedShaperShowcase.ned>`
 

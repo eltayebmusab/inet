@@ -43,7 +43,7 @@ module Ieee8021qciFilter like IPacketFilter
         input in;
         output out;
     submodules:
-        classifier: PriorityClassifier {
+        classifier: <default("PriorityClassifier")> like IPacketFilter {
             @display("p=100,100");
         }
         streamFilter[numStreams]: <default("StreamFilter")> like IPacketFilter {

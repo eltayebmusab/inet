@@ -34,6 +34,7 @@ class INET_API EligibilityTimeMeter : public ClockUserModuleMixin<PacketMeterBas
     clocktime_t groupEligibilityTime = 0;
     clocktime_t bucketEmptyTime = 0;
     clocktime_t maxResidenceTime = 0;
+    bool hasMaxResidenceTime = false;
 
   protected:
     virtual void initialize(int stage) override;
