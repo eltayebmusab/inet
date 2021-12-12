@@ -55,6 +55,10 @@ void UdpBasicApp::initialize(int stage)
         if (stopTime >= SIMTIME_ZERO && stopTime < startTime)
             throw cRuntimeError("Invalid startTime/stopTime parameters");
         selfMsg = new cMessage("sendTimer");
+        //////////////////////////////////////////////////////////////////////////
+        // Emit application packet sent Signal (Musab)
+        //////////////////////////////////////////////////////////////////////////
+        appPacketSentSignal = registerSignal("appPacketSent");
     }
 }
 
@@ -123,6 +127,10 @@ void UdpBasicApp::sendPacket()
     packet->insertAtBack(payload);
     L3Address destAddr = chooseDestAddr();
     emit(packetSentSignal, packet);
+    //////////////////////////////////////////////////////////////////////////
+    // Emit application packet sent Signal (Musab) (Musab)
+    //////////////////////////////////////////////////////////////////////////
+    emit(appPacketSentSignal, simTime());
     socket.sendTo(packet, destAddr, destPort);
     numSent++;
 }
