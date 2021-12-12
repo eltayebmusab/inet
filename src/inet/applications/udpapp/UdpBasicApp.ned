@@ -71,7 +71,7 @@ simple UdpBasicApp like IApp
         //////////////////////////////////////////////////////////////////////////
         // Emit application packet sent Signal (Musab)
         //////////////////////////////////////////////////////////////////////////
-	    @signal[appPacketSent](type=simtime_t);
+	@signal[appPacketSent](type=simtime_t);
         @statistic[appPacketSent](source=appPacketSent; record=vector);
     gates:
         input socketIn @labels(UdpControlInfo/up);
